@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="fondo" href="/img/image4.jpg">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title class="title">Lista De  Contactos</title>
+</head>
+<body>
+
+    <div class="container-form">
+    <form id="form">
+        <label for="fname">Name</label>
+        <input class="add" id="name-input"  type="text" placeholder="Tu nombre y apellido">
+        <p class="instrucciones">Nombre y Apellido con mayuscula al inicio y 1 solo espcacio entre los 2 <br>Ejemplo: Jose Antonio</p>
+        <label for="fname">Number</label>
+        <input class="add"  id="number-input" type="text" placeholder="Numero venezolano">
+        <p class="instrucciones">Numero de 11 caracteres comenzando con 0 seguido de 4 o 2 seguido de 1 o 2<br>Ejemplo: 04241234567</p>
+        <button  id="form-btn" disabled>Agregar</button>
+    </form>
+</div>
+
+
+<div id="ul-container">
+<ul id="list">
+    
+
+</ul>
+</div>
+
+<div id="container-cerrar">
+<button id="cerrar-btn">Cerrar Sesion</button>
+</div>
+
+
+    <style>
+
+
+
+::before,
+::after {
+    box-sizing: border-box;
+    /* 1 */
+    border-width: 0;
+    /* 2 */
+    border-style: solid;
+    /* 2 */
+    border-color: #e5e7eb;
+    /* 2 */
+}
+
+body{
+     background-image: url(/img/image5.jpg);
+    /* background-color: black; */
+
+}
+.container-form{
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    
+    }
+form{
+    border: solid 3px 	#001eff;
+ padding: 2rem;
+}
+ul{
+    border:solid 3px 	#00ff9f;
+    height: 20rem;
+    
+    background-color: rgba(48, 0, 0, 0);
+    overflow: auto;
+    overflow-x: hidden;
+border-radius: 0.5rem;
+
+}
+
+
+label{
+    color: 	#00ff9f;
+}
+.instrucciones{
+    font-size: 0.8rem;
+    color: 	#00ff9f;
+
+}
+
+input[type=text], select {
+    width: 80%;
+    padding: 5px;
+    display: inline-block;
+    margin: 3px;
+    border-radius: 4px;
+        box-sizing: border-box;
+    background-color: #93016e90;
+     color: 	#00b8ff;
+     font-size: 1rem;
+     border: 3px solid  #001eff;
+    
+  }
+  #name-input{
+    width: 100%;
+  }
+  #number-input{
+    width: 100%;
+  }
+.inputs{
+    border:1px solid black;
+  
+}
+button:hover{
+-webkit-transform:scale(1.1);transform:scale(1.1);
+    -webkit-transition-duration: 0.5s;
+}
+
+
+
+
+
+#form-btn{
+
+    color: #00b8ff;
+    border-radius: 1rem;
+    background-color: rgba(31, 151, 221, 0.801);
+    border: 3px solid #bb00ff;
+
+    box-shadow:rgba(255, 0, 225, 0.755) 0 0 15px 10px;
+
+
+}
+
+
+#form-btn:hover{
+background-color: aqua;
+transition: all 1s;
+
+
+}
+
+#list{
+
+
+padding: 1rem;
+justify-content: center;
+gap: 3rem;
+
+}
+
+.li-container{
+
+
+margin: 0;
+gap: 2rem;
+
+}
+
+#form{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+
+.listItem {
+    display: flex;
+    flex-direction: column-reverse;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.edit-icon {
+    width: 2rem;
+    height: 2rem;
+    
+}
+
+.edit-btn{
+    padding: 0;
+margin: 0;
+width: 50%;
+height: 2.5rem;
+border-radius: 0.5rem;
+border: 3px solid rgb(98, 255, 0);
+color:rgb(98, 255, 0) ;
+background-color: rgba(98, 255, 0, 0);
+transition: all 1s;
+box-shadow:rgba(98, 255, 0, 0.755) 0 0 15px 10px;
+
+}
+.edit-btn:disabled{
+    color:rgba(98, 255, 0, 0.21) ;
+    box-shadow:rgba(98, 255, 0, 0.31) 0 0 15px 10px;
+}
+.save-icon{
+    height: 2rem;
+    width: 2rem;
+}
+
+.delete-icon {
+    width: 2rem;
+    height: 2rem;
+}
+.delete-btn{
+    padding: 0;
+margin: 0;
+width: 50%;
+border-radius: 0.5rem;
+border: 1px solid rgb(255, 0, 0);
+background-color:rgba(0, 0, 0, 0) ;
+box-shadow:rgba(255, 0, 0, 0.755) 0 0 15px 10px;
+color: red;
+
+}
+
+
+
+.inputs{
+width: 90%;
+
+}
+input {
+    outline: none;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid grey;
+}
+
+.red {
+    border: 5px solid red;
+    box-shadow:rgba(255, 0, 0, 0.861) 0 0 15px 10px;
+
+;
+}
+
+.green {
+    border: 5px solid green;
+    box-shadow:rgba(64, 255, 0, 0.861) 0 0 15px 10px;
+
+ 
+}
+.editando{
+    background-color: rgba(0, 0, 0, 0);
+width: 70%;
+
+}
+.listItem{
+    display: flex;
+      gap: 0.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+
+    /* SCROOLBAR         */
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: 	#00ff9f #d600ff;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 20px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #d600ff;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #001eff;
+    border-radius: 20px;
+    border: 4px ridge #00fffb;
+  }
+#container-cerrar{
+    display: flex;
+    width: 100%;
+  
+    justify-content: center;
+    align-items: center;
+}
+#cerrar-btn{
+    display: flex;
+    font-size: 1rem;
+    font-weight: 900;
+    width: 7rem;
+    height: 4rem;
+    justify-content: center;
+    align-items: center;
+    background-color: #6e7888;
+    background-color: #8d38ca;
+    border-radius: 0.5rem;
+    color: white;
+    border: 5px solid rgba(13, 0, 255, 0.406);
+    box-shadow:rgba(4, 0, 255, 0.235) 0 0 5px 5px;
+}
+ 
+
+ @media screen and (min-width: 768px) {
+
+    #list {
+      display: flex;
+      flex-wrap: wrap;
+     
+          
+    }
+    .listItem {
+
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 360px;
+    }
+  } 
+
+
+    </style>
+
+    <script type="module" src="index.js"></script>
+</body>
+</html>
