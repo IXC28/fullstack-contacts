@@ -1,5 +1,5 @@
 const PAGE_URL = process.env.NODE_ENV === 'production'
-  ? 'https://contacts-list-0xpt.onrender.com/'
+  ? 'https://contacts-list-0xpt.onrender.com'
   : 'http://localhost:3003';
 
 const MONGO_URI = process.env.NODE_ENV === 'production'
